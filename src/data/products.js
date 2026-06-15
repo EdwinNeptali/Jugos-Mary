@@ -43,7 +43,7 @@ export const products = [
     id: 's1',
     title: 'Sándwich de Pollo',
     category: 'sandwich',
-    price: 4.00,
+    price: 1.50,
     icon: '🥪',
     description: 'Pollo deshilachado con mayonesa especial.',
     allowBerenjena: false
@@ -52,7 +52,7 @@ export const products = [
     id: 's2',
     title: 'Sándwich de Huevo',
     category: 'sandwich',
-    price: 4.00,
+    price: 1.50,
     icon: '🍳',
     description: 'Huevo frito o revuelto calientito en pan suave.',
     allowBerenjena: false
@@ -61,7 +61,7 @@ export const products = [
     id: 's3',
     title: 'Sándwich de Queso',
     category: 'sandwich',
-    price: 4.00,
+    price: 1.50,
     icon: '🧀',
     description: 'Queso fresco derretido.',
     allowBerenjena: false
@@ -70,7 +70,7 @@ export const products = [
     id: 's4',
     title: 'Sándwich de Palta',
     category: 'sandwich',
-    price: 4.00,
+    price: 1.50,
     icon: '🥑',
     description: 'Palta fresca con un toque de sal y limón.',
     allowBerenjena: false

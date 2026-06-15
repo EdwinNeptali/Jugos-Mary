@@ -10,6 +10,7 @@ function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('Todos');
 
   const addToCart = (product, options) => {
     setCart((prev) => {
@@ -64,11 +65,18 @@ function App() {
         onOpenCart={() => setIsCartOpen(true)} 
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
       />
       
       <main>
         <div className="container">
-          <ProductList products={products} onAdd={addToCart} searchTerm={searchTerm} />
+          <ProductList 
+            products={products} 
+            onAdd={addToCart} 
+            searchTerm={searchTerm} 
+            selectedCategory={selectedCategory} 
+          />
         </div>
       </main>
 
