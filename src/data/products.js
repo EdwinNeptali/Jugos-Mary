@@ -6,7 +6,7 @@ export const products = [
     price: 3.00,
     icon: '🍊',
     color: '#f97316', // Orange
-    description: 'Fresco y natural, exprimido al instante en vaso comercial grande.',
+    description: 'Vitamina C, Ácido Fólico, Potasio.',
     allowBerenjena: true
   },
   {
@@ -16,7 +16,7 @@ export const products = [
     price: 2.50,
     icon: '🥭',
     color: '#fbbf24', // Yellowish orange
-    description: 'Suave y digestivo en vaso comercial grande.',
+    description: 'Vitamina A, Vitamina C, Fibra.',
     allowBerenjena: true
   },
   {
@@ -26,7 +26,7 @@ export const products = [
     price: 4.00,
     icon: '🍍',
     color: '#eab308', // Yellow
-    description: 'Piña natural con extra fibra en vaso comercial grande.',
+    description: 'Bromelina, Fibra, Vitamina C.',
     allowBerenjena: true
   },
   {
@@ -36,7 +36,7 @@ export const products = [
     price: 5.00,
     icon: '🥥',
     color: '#fef3c7', // Cream
-    description: 'El clásico sabor tropical, refrescante y delicioso.',
+    description: 'Vitamina C, Magnesio, Hierro.',
     allowBerenjena: true
   },
   {
@@ -45,7 +45,7 @@ export const products = [
     category: 'sandwich',
     price: 1.50,
     icon: '🥪',
-    description: 'Pollo deshilachado con mayonesa especial.',
+    description: '',
     allowBerenjena: false
   },
   {
@@ -54,7 +54,7 @@ export const products = [
     category: 'sandwich',
     price: 1.50,
     icon: '🍳',
-    description: 'Huevo frito o revuelto calientito en pan suave.',
+    description: '',
     allowBerenjena: false
   },
   {
@@ -63,7 +63,7 @@ export const products = [
     category: 'sandwich',
     price: 1.50,
     icon: '🧀',
-    description: 'Queso fresco derretido.',
+    description: '',
     allowBerenjena: false
   },
   {
@@ -72,7 +72,7 @@ export const products = [
     category: 'sandwich',
     price: 1.50,
     icon: '🥑',
-    description: 'Palta fresca con un toque de sal y limón.',
+    description: '',
     allowBerenjena: false
   },
   {
@@ -81,7 +81,7 @@ export const products = [
     category: 'postre',
     price: 1.50,
     icon: '🍰',
-    description: 'Esponjoso queque tradicional recién horneado.',
+    description: '',
     allowBerenjena: false
   }
 ];
