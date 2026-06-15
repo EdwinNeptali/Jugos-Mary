@@ -2,8 +2,8 @@ import ProductCard from './ProductCard';
 
 export default function ProductList({ products, onAdd, searchTerm, selectedCategory }) {
   const categories = [
-    { id: 'jugos', title: 'Jugos Refrescantes' },
-    { id: 'sandwich', title: 'Sándwiches' },
+    { id: 'jugos', title: 'Jugos' },
+    { id: 'sandwich', title: 'Sandwichs' },
     { id: 'postre', title: 'Postres' }
   ];
 
@@ -15,7 +15,7 @@ export default function ProductList({ products, onAdd, searchTerm, selectedCateg
   );
 
   const visibleCategories = categories.filter(cat => 
-    !selectedCategory || selectedCategory === 'Todos' || cat.title === selectedCategory
+    !selectedCategory || cat.title === selectedCategory
   );
 
   return (

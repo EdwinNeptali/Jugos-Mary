@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 export default function Header({ cartItemCount, onOpenCart, searchTerm, setSearchTerm, selectedCategory, setSelectedCategory }) {
   const searchInputRef = useRef(null);
 
-  const categories = ['Todos', 'Jugos Refrescantes', 'Sándwiches', 'Postres'];
+  const categories = ['Jugos', 'Sandwichs', 'Postres'];
 
   useEffect(() => {
     const handleKeyDown = (e) => {
