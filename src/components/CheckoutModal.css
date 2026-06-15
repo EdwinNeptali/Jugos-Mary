@@ -1,0 +1,204 @@
+/* Estilo Ultra Pro - Inspirado en iOS/Apple */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Efecto Glassmorphism / Cristal esmerilado de iOS */
+  backdrop-filter: blur(12px); 
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.85);
+  /* Bordes bien redondeados estilo Apple */
+  border-radius: 28px; 
+  width: 100%;
+  max-width: 400px;
+  padding: 36px 32px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  position: relative;
+  /* Fuente del sistema de Apple por defecto */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.btn-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #f1f1f4;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  color: #86868b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-close:hover {
+  background: #e5e5ea;
+  color: #1d1d1f;
+  transform: scale(1.05);
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: #1d1d1f;
+  letter-spacing: -0.022em;
+}
+
+.modal-header p {
+  margin: 8px 0 28px;
+  font-size: 15px;
+  color: #86868b;
+  line-height: 1.4;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  background-color: rgba(0, 0, 0, 0.04);
+  font-size: 17px;
+  color: #1d1d1f;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.form-group input:focus {
+  background-color: #ffffff;
+  border-color: #0071e3;
+  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.2);
+}
+
+.payment-card {
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 18px;
+  padding: 20px;
+  margin: 28px 0;
+}
+
+.payment-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.payment-label {
+  font-size: 15px;
+  color: #1d1d1f;
+  font-weight: 500;
+}
+
+.payment-amount {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1d1d1f;
+}
+
+.yape-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.yape-box p {
+  margin: 0;
+  font-size: 14px;
+  color: #86868b;
+}
+
+.yape-number {
+  font-size: 17px;
+  font-weight: 600;
+  color: #7000b0; /* Color Yape moderno */
+  background: rgba(112, 0, 176, 0.1);
+  padding: 6px 12px;
+  border-radius: 10px;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-cancel, .btn-confirm {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  border: none;
+}
+
+.btn-confirm {
+  background-color: #0071e3; /* Azul Apple */
+  color: #ffffff;
+}
+
+.btn-confirm:hover {
+  background-color: #0077ed;
+  transform: scale(0.98);
+}
+
+.btn-cancel {
+  background-color: transparent;
+  color: #0071e3;
+}
+
+.btn-cancel:hover {
+  background-color: rgba(0, 113, 227, 0.08);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
