@@ -42,7 +42,7 @@ function App() {
     });
     
     // Open cart automatically when adding
-    setIsCartOpen(true);
+    // setIsCartOpen(true);
   };
 
   const updateQuantity = (cartItemId, delta) => {

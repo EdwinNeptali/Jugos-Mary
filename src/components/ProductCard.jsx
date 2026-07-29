@@ -2,10 +2,15 @@ import { useState } from 'react';
 
 export default function ProductCard({ product, onAdd }) {
   const [hasBerenjena, setHasBerenjena] = useState(false);
+  const [showAddedMessage, setShowAddedMessage] = useState(false);
 
   const handleAdd = () => {
     onAdd(product, { hasBerenjena });
     setHasBerenjena(false);
+    setShowAddedMessage(true);
+    setTimeout(() => {
+      setShowAddedMessage(false);
+    }, 2000);
   };
 
   const isJuice = product.category === 'jugos';
@@ -44,8 +49,12 @@ export default function ProductCard({ product, onAdd }) {
         </div>
       )}
 
-      <button className="add-button" onClick={handleAdd}>
-        Agregar
+      <button 
+        className={`add-button ${showAddedMessage ? 'added' : ''}`} 
+        onClick={handleAdd}
+        disabled={showAddedMessage}
+      >
+        {showAddedMessage ? '¡Agregado!' : 'Agregar'}
       </button>
     </div>
   );

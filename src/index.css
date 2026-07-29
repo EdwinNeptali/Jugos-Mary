@@ -415,6 +415,13 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 12px rgba(255, 112, 67, 0.2);
 }
 
+.add-button.added {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: white;
+  cursor: not-allowed;
+}
+
 /* Toast Notification */
 .toast-notification {
   position: fixed;
