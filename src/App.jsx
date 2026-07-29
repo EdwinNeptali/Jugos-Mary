@@ -45,15 +45,6 @@ function App() {
     // setIsCartOpen(true);
   };
 
-  const updateQuantity = (cartItemId, delta) => {
-    setCart((prev) => prev.map(item => {
-      if (item.cartItemId === cartItemId) {
-        const newQuantity = item.quantity + delta;
-        return { ...item, quantity: Math.max(0, newQuantity) };
-      }
-      return item;
-    }).filter(item => item.quantity > 0));
-  };
 
   const cartTotal = cart.reduce((sum, item) => sum + (item.finalPrice * item.quantity), 0);
   const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -84,7 +75,6 @@ function App() {
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
         cart={cart}
-        updateQuantity={updateQuantity}
         total={cartTotal}
         onCheckout={() => {
           setIsCartOpen(false);
