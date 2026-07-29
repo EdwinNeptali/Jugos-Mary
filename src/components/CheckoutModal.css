@@ -102,38 +102,91 @@
   box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.2);
 }
 
-.payment-card {
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* New styles for receipt and payment methods */
+.order-summary-card {
   background: rgba(0, 0, 0, 0.03);
   border-radius: 18px;
   padding: 20px;
   margin: 28px 0;
 }
 
-.payment-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.summary-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1d1d1f;
   margin-bottom: 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
+.receipt {
+  font-family: 'Menlo', 'Courier New', Courier, monospace;
+}
+
+.receipt-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.receipt-item-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 16px;
+}
+
+.receipt-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 2px dashed rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.payment-method {
+  margin-top: 28px;
+}
+
 .payment-label {
-  font-size: 15px;
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
   color: #1d1d1f;
-  font-weight: 500;
+  margin-bottom: 8px;
 }
 
-.payment-amount {
-  font-size: 24px;
-  font-weight: 700;
-  color: #1d1d1f;
+.payment-options {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
 .yape-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: rgba(112, 0, 176, 0.05);
+  padding: 12px;
+  border-radius: 12px;
+  margin-top: 10px;
 }
 
 .yape-box p {
@@ -151,11 +204,6 @@
   border-radius: 10px;
 }
 
-.modal-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
 
 .btn-cancel, .btn-confirm {
   width: 100%;
