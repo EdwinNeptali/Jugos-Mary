@@ -11,7 +11,7 @@ export default function ProductCard({ product, onAdd, onSelect }) {
     setShowAddedMessage(true);
     setTimeout(() => {
       setShowAddedMessage(false);
-    }, 2000);
+    }, 600);
   };
 
   return (
@@ -47,7 +47,6 @@ export default function ProductCard({ product, onAdd, onSelect }) {
       <button
         className={`add-button ${showAddedMessage ? 'added' : ''}`}
         onClick={handleAdd}
-        disabled={showAddedMessage}
       >
         {showAddedMessage ? '¡Agregado!' : 'Agregar'}
       </button>

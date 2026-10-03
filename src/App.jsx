@@ -47,6 +47,22 @@ function App() {
     // setIsCartOpen(true);
   };
 
+  const updateQuantity = (cartItemId, delta) => {
+    setCart((prev) =>
+      prev
+        .map((item) =>
+          item.cartItemId === cartItemId
+            ? { ...item, quantity: item.quantity + delta }
+            : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  };
+
+  const removeFromCart = (cartItemId) => {
+    setCart((prev) => prev.filter((item) => item.cartItemId !== cartItemId));
+  };
+
 
   const cartTotal = cart.reduce((sum, item) => sum + (item.finalPrice * item.quantity), 0);
   const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -79,6 +95,9 @@ function App() {
         onClose={() => setIsCartOpen(false)}
         cart={cart}
         total={cartTotal}
+        onIncrement={(cartItemId) => updateQuantity(cartItemId, 1)}
+        onDecrement={(cartItemId) => updateQuantity(cartItemId, -1)}
+        onRemove={removeFromCart}
         onCheckout={() => {
           setIsCartOpen(false);
           setIsCheckoutOpen(true);

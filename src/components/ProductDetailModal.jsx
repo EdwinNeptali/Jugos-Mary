@@ -14,13 +14,15 @@ export default function ProductDetailModal({ product, hasBerenjena, onClose }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  const bullets = [];
-  if (product.prep) bullets.push({ icon: '👨‍🍳', text: product.prep });
-  (product.benefits || []).forEach((b) => bullets.push({ icon: '✔️', text: b }));
+  const infoRows = [];
   if (hasBerenjena && product.berenjenaBenefit) {
-    bullets.push({ icon: '🍆', text: product.berenjenaBenefit });
+    infoRows.push({ icon: '🍆', text: product.berenjenaBenefit });
   }
-  if (product.volume) bullets.push({ icon: '🥤', text: `Contiene ${product.volume}` });
+  if (product.volume) {
+    infoRows.push({ icon: '🥤', text: `Contiene ${product.volume}` });
+  }
+
+  const glowColor = product.category === 'jugos' ? product.color : '#e3b56c';
 
   return (
     <div className="detail-overlay" onClick={onClose}>
@@ -34,20 +36,33 @@ export default function ProductDetailModal({ product, hasBerenjena, onClose }) {
         <button className="btn-close" onClick={onClose} aria-label="Cerrar">×</button>
 
         <div className="detail-visual-stage">
+          <div className="detail-visual-glow" style={{ background: glowColor }}></div>
           <ProductVisual product={product} hasBerenjena={hasBerenjena} large />
         </div>
 
         <h2 className="detail-title">{product.title}</h2>
         <div className="detail-price">S/ {product.price.toFixed(2)}</div>
 
-        <ul className="detail-bullets">
-          {bullets.map((bullet, i) => (
-            <li key={i}>
-              <span className="detail-bullet-icon">{bullet.icon}</span>
-              <span>{bullet.text}</span>
-            </li>
-          ))}
-        </ul>
+        {product.prep && <p className="detail-prep">{product.prep}</p>}
+
+        {product.benefits?.length > 0 && (
+          <div className="detail-chips">
+            {product.benefits.map((benefit, i) => (
+              <span className="detail-chip" key={i}>✓ {benefit}</span>
+            ))}
+          </div>
+        )}
+
+        {infoRows.length > 0 && (
+          <div className="detail-info-list">
+            {infoRows.map((row, i) => (
+              <div className="detail-info-row" key={i}>
+                <span className="detail-info-icon">{row.icon}</span>
+                <span>{row.text}</span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

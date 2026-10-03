@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import OrderSummary from './OrderSummary';
+import CartLineItem from './CartLineItem';
 import useBodyScrollLock from '../hooks/useBodyScrollLock';
 
 const CLOSE_DRAG_THRESHOLD = 110;
 
-export default function CartSidebar({ isOpen, onClose, cart, total, onCheckout }) {
+export default function CartSidebar({ isOpen, onClose, cart, total, onIncrement, onDecrement, onRemove, onCheckout }) {
   useBodyScrollLock(isOpen);
 
   const [dragY, setDragY] = useState(0);
@@ -83,12 +83,24 @@ export default function CartSidebar({ isOpen, onClose, cart, total, onCheckout }
               Tu carrito está vacío. ¡Agrega algunos jugos o sándwiches!
             </p>
           ) : (
-            <OrderSummary cart={cart} total={total} />
+            cart.map((item) => (
+              <CartLineItem
+                key={item.cartItemId}
+                item={item}
+                onIncrement={() => onIncrement(item.cartItemId)}
+                onDecrement={() => onDecrement(item.cartItemId)}
+                onRemove={() => onRemove(item.cartItemId)}
+              />
+            ))
           )}
         </div>
 
         {cart.length > 0 && (
           <div className="cart-footer">
+            <div className="cart-total">
+              <span>Total</span>
+              <span>S/ {total.toFixed(2)}</span>
+            </div>
             <button className="checkout-btn" onClick={onCheckout}>
               Proceder al Pago
             </button>

@@ -23,8 +23,11 @@ export default function ProductList({ products, onAdd, onSelect, searchTerm, onA
     // once the page runs out of room to scroll further, so both the
     // observer and the scroll fallback below check this the same way —
     // whichever fires last must still land on the same answer.
+    // Generous tolerance: mobile dynamic toolbars, overscroll/rubber-banding
+    // and sub-pixel scroll values mean "exactly at max scroll" rarely holds
+    // true on a real device.
     const isAtBottom = () =>
-      window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
 
     const observer = new IntersectionObserver(
       (entries) => {

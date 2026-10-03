@@ -5,7 +5,7 @@ export const products = [
     category: 'jugos',
     price: 3.00,
     icon: '🍊',
-    color: '#f97316', // Orange
+    color: '#fbbf24',
     description: 'Vitamina C, Ácido Fólico, Potasio.',
     allowBerenjena: true,
     volume: '250 ml',
@@ -19,7 +19,7 @@ export const products = [
     category: 'jugos',
     price: 2.50,
     icon: '🥭',
-    color: '#fbbf24', // Yellowish orange
+    color: '#f97316',
     description: 'Vitamina A, Vitamina C, Fibra.',
     allowBerenjena: true,
     volume: '250 ml',
@@ -36,6 +36,7 @@ export const products = [
     color: '#eab308', // Yellow
     description: 'Bromelina, Fibra, Vitamina C.',
     allowBerenjena: true,
+    hasFiber: true,
     volume: '250 ml',
     prep: 'Piña fresca licuada con su fibra natural, sin colar.',
     benefits: ['Contiene bromelina digestiva', 'Alto en Vitamina C', 'Con fibra natural'],
@@ -47,7 +48,7 @@ export const products = [
     category: 'jugos',
     price: 5.00,
     icon: '🍹',
-    color: '#fef3c7', // Cream
+    color: '#eab308',
     description: 'Vitamina C, Magnesio, Hierro.',
     allowBerenjena: true,
     volume: '250 ml',

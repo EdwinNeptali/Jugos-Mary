@@ -86,18 +86,12 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
-  font-weight: 500;
-  color: #64748B;
+  font-weight: 600;
+  color: var(--text-color);
   cursor: pointer;
   padding: 1rem 0;
   white-space: nowrap;
-  transition: color 0.3s ease;
   position: relative;
-}
-
-.category-btn:hover,
-.category-btn.active {
-  color: #FF7843;
 }
 
 /* Single pill that slides beneath whichever category is active/in view */
@@ -293,8 +287,9 @@ h1, h2, h3, h4, h5, h6 {
 .bread-wrapper,
 .cake-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
   margin-bottom: 1rem;
   height: 90px;
   position: relative;
@@ -321,18 +316,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --- Juice glass: open fountain-glass silhouette with a footed base --- */
-.juice-straw {
-  position: absolute;
-  top: -34px;
-  left: 50%;
-  width: 7px;
-  height: 46px;
-  background: #7dd3fc;
-  border-radius: 4px;
-  transform: translateX(-50%) rotate(10deg);
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.15);
-  z-index: 3;
-}
 
 .juice-glass {
   width: 62px;
@@ -379,18 +362,16 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.5;
 }
 
-/* Eggplant add-on: distinct pale seeds (cream fill + thin ring), clearly
-   bigger/sparser than the fiber specks so they read as "seeds" and not texture */
+/* Eggplant add-on: small black seeds, clearly visible against any juice color */
 .juice-seeds {
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle, #fdf6d8 2px, transparent 2.2px),
-    radial-gradient(circle, rgba(120, 90, 20, 0.38) 2.6px, transparent 2.8px),
-    radial-gradient(circle, #fffceb 1.5px, transparent 1.7px),
-    radial-gradient(circle, rgba(120, 90, 20, 0.3) 2px, transparent 2.2px);
-  background-size: 17px 18px, 17px 18px, 13px 15px, 13px 15px;
-  background-position: 3px 5px, 3px 5px, 9px 12px, 9px 12px;
+    radial-gradient(circle, #1a1a1a 1.8px, transparent 2px),
+    radial-gradient(circle, #1a1a1a 1.4px, transparent 1.6px);
+  background-size: 17px 18px, 13px 15px;
+  background-position: 3px 5px, 9px 12px;
+  opacity: 0.85;
 }
 
 .juice-icon {
@@ -408,12 +389,6 @@ h1, h2, h3, h4, h5, h6 {
 .juice-cup-wrapper.large .juice-glass-foot {
   width: 50px;
   height: 13px;
-}
-
-.juice-cup-wrapper.large .juice-straw {
-  top: -58px;
-  width: 11px;
-  height: 78px;
 }
 
 .juice-cup-wrapper.large .juice-surface {
@@ -810,6 +785,25 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.95rem;
 }
 
+.cart-item-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--text-muted);
+  opacity: 0.6;
+  padding: 0.4rem;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.cart-item-remove:hover {
+  opacity: 1;
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+}
+
 .cart-footer {
   margin-top: auto;
   padding-top: 2rem;
@@ -933,7 +927,8 @@ h1, h2, h3, h4, h5, h6 {
     gap: 1rem;
   }
 
-  .cart-item-controls {
+  .cart-item-controls,
+  .cart-item-remove {
     align-self: flex-end;
   }
 

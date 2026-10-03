@@ -59,7 +59,27 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 12px 0 8px;
+  position: relative;
+}
+
+.detail-visual-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.22;
+  filter: blur(28px);
+  z-index: 0;
+}
+
+.detail-visual-stage > :not(.detail-visual-glow) {
+  position: relative;
+  z-index: 1;
 }
 
 .detail-title {
@@ -74,33 +94,71 @@
   font-weight: 800;
   color: var(--primary-color);
   margin-top: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
-.detail-bullets {
-  list-style: none;
+.detail-prep {
   width: 100%;
   text-align: left;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-style: italic;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.detail-chips {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.detail-chip {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+  background: rgba(46, 125, 50, 0.1);
+  padding: 7px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.detail-info-list {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
+  margin-top: 12px;
 }
 
-.detail-bullets li {
+.detail-info-row {
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 0.92rem;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  font-size: 0.88rem;
   color: var(--text-color);
-  line-height: 1.4;
+  line-height: 1.35;
   background: var(--bg-color);
-  padding: 10px 14px;
-  border-radius: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
 }
 
-.detail-bullet-icon {
+.detail-info-icon {
   flex-shrink: 0;
-  font-size: 1rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
 }
 
 @keyframes detailFadeIn {

@@ -113,7 +113,7 @@ export default function Header({ cartItemCount, onOpenCart, searchTerm, setSearc
             ref={searchInputRef}
             type="text"
             className="global-search-input"
-            placeholder="Empieza a escribir para buscar..."
+            placeholder="¿Qué quieres comer hoy?"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
