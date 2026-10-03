@@ -5,31 +5,34 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Efecto Glassmorphism / Cristal esmerilado de iOS */
-  backdrop-filter: blur(12px); 
-  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(15, 23, 42, 0.55);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   padding: 20px;
-  animation: fadeIn 0.3s ease;
+  overflow-y: auto;
+  animation: fadeIn 0.25s ease;
 }
 
 .modal-content {
-  background: rgba(255, 255, 255, 0.85);
-  /* Bordes bien redondeados estilo Apple */
-  border-radius: 28px; 
+  /* Superficie sólida y opaca: nada de cristal translúcido detrás del formulario */
+  background: #ffffff;
+  border-radius: 28px;
   width: 100%;
-  max-width: 400px;
-  padding: 36px 32px;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  max-width: 420px;
+  max-height: min(760px, 90vh);
+  max-height: min(760px, 90dvh);
+  padding: 32px 28px 24px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.25);
   position: relative;
-  /* Fuente del sistema de Apple por defecto */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: auto;
 }
 
 .btn-close {
@@ -56,6 +59,11 @@
   transform: scale(1.05);
 }
 
+.modal-header {
+  flex: 0 0 auto;
+  padding-right: 36px;
+}
+
 .modal-header h2 {
   margin: 0;
   font-size: 26px;
@@ -65,10 +73,30 @@
 }
 
 .modal-header p {
-  margin: 8px 0 28px;
+  margin: 8px 0 20px;
   font-size: 15px;
   color: #86868b;
   line-height: 1.4;
+}
+
+.modal-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 4px 4px 0;
+  margin-right: -4px;
+}
+
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.modal-body::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
 }
 
 .form-group {
@@ -103,9 +131,13 @@
 }
 
 .modal-actions {
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding-top: 20px;
+  margin-top: 4px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 /* New styles for receipt and payment methods */
@@ -169,39 +201,136 @@
 
 .payment-options {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   margin-bottom: 16px;
 }
 
 .radio-option {
+  flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 6px;
+  padding: 14px 10px;
+  border-radius: 14px;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.02);
   cursor: pointer;
+  position: relative;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1d1d1f;
+  transition: all 0.2s ease;
 }
+
+.radio-option-icon {
+  font-size: 22px;
+}
+
+.radio-option.selected {
+  border-color: #7000b0;
+  background: rgba(112, 0, 176, 0.07);
+  color: #7000b0;
+}
+
+.radio-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.radio-option:has(input:focus-visible) {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
+}
+
+.yape-panel {
+  margin-top: 4px;
+  animation: fadeIn 0.25s ease;
+}
+
 .yape-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   background: rgba(112, 0, 176, 0.05);
-  padding: 12px;
-  border-radius: 12px;
-  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+}
+
+.yape-box-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .yape-box p {
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
   color: #86868b;
 }
 
 .yape-number {
-  font-size: 17px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   color: #7000b0; /* Color Yape moderno */
-  background: rgba(112, 0, 176, 0.1);
-  padding: 6px 12px;
+  letter-spacing: 0.5px;
+}
+
+.copy-btn {
+  flex-shrink: 0;
+  background: #7000b0;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
   border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  background: #5c0091;
+}
+
+.yape-instructions {
+  font-size: 12.5px;
+  color: #86868b;
+  line-height: 1.5;
+  margin: 12px 0;
+}
+
+.yape-confirm-fields {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.yape-confirm-fields .form-group {
+  flex: 1 1 140px;
+  margin-bottom: 0;
+}
+
+.field-error {
+  display: block;
+  color: #d92d20;
+  font-size: 12px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.form-group input.has-error {
+  border-color: #d92d20;
+  background-color: rgba(217, 45, 32, 0.04);
+}
+
+.form-group input.has-error:focus {
+  border-color: #d92d20;
+  box-shadow: 0 0 0 4px rgba(217, 45, 32, 0.15);
 }
 
 
@@ -241,12 +370,39 @@
 }
 
 @keyframes slideUp {
-  from { 
+  from {
     opacity: 0;
     transform: translateY(30px) scale(0.95);
   }
-  to { 
+  to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideUpSheet {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* Mobile: full solid bottom sheet instead of a centered card, so the
+   keyboard never has to fight the page for scroll space. */
+@media (max-width: 768px) {
+  .modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal-content {
+    max-width: 100%;
+    max-height: 92vh;
+    max-height: 92dvh;
+    border-radius: 24px 24px 0 0;
+    padding: 28px 20px calc(16px + env(safe-area-inset-bottom));
+    animation: slideUpSheet 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .payment-options {
+    gap: 10px;
   }
 }

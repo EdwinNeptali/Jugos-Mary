@@ -7,10 +7,15 @@ export default function Header({ cartItemCount, onOpenCart, searchTerm, setSearc
 
   useEffect(() => {
     const handleKeyDown = (e) => {
+      // Cart/checkout panel is open: never steal focus into a hidden header input.
+      if (document.body.classList.contains('body-scroll-locked')) {
+        return;
+      }
+
       if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') {
         return;
       }
-      
+
       if (e.key.length === 1 && /[a-zA-Z0-9]/.test(e.key)) {
         searchInputRef.current?.focus();
       }
