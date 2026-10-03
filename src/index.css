@@ -709,8 +709,8 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.75rem;
+  margin-bottom: 0.35rem;
+  padding-bottom: 0.35rem;
   border-bottom: 1px solid var(--border-color);
   animation: fadeIn 0.3s ease-out;
 }
