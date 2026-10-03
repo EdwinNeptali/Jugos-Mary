@@ -43,6 +43,11 @@ h1, h2, h3, h4, h5, h6 {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease;
+}
+
+.header-wrapper.header-hidden {
+  transform: translateY(-100%);
 }
 
 .header-main {
@@ -69,6 +74,7 @@ h1, h2, h3, h4, h5, h6 {
   gap: 2.5rem;
   padding: 0 2rem;
   overflow-x: auto;
+  position: relative;
 }
 
 .category-nav::-webkit-scrollbar {
@@ -89,25 +95,21 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-.category-btn::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background-color: #FF7843;
-  transition: width 0.3s ease;
-}
-
 .category-btn:hover,
 .category-btn.active {
   color: #FF7843;
 }
 
-.category-btn.active::after {
-  width: 100%;
+/* Single pill that slides beneath whichever category is active/in view */
+.category-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  border-radius: 3px;
+  background-color: #FF7843;
+  transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1), width 0.3s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.2s ease;
+  opacity: 0;
 }
 
 .cart-button {
@@ -196,6 +198,10 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px dashed var(--border-color);
 }
 
+.category-section {
+  scroll-margin-top: 150px;
+}
+
 .section-title {
   margin-bottom: 3rem;
   font-size: 2.2rem;
@@ -245,17 +251,58 @@ h1, h2, h3, h4, h5, h6 {
   border-color: transparent;
 }
 
-/* Commercial Juice Cup CSS */
-.juice-cup-wrapper {
+/* Click target wrapping every product visual (opens the detail view) */
+.product-visual-trigger {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  font: inherit;
+}
+
+.product-visual-zoom {
+  position: absolute;
+  top: 0;
+  right: 6px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.product-visual-trigger:hover .product-visual-zoom,
+.product-visual-trigger:focus-visible .product-visual-zoom {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Shared sizing/ground-shadow for every product illustration */
+.juice-cup-wrapper,
+.bread-wrapper,
+.cake-wrapper {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
   margin-bottom: 1rem;
   height: 90px;
-  align-items: flex-end;
   position: relative;
 }
 
-.juice-cup-wrapper::after {
+.juice-cup-wrapper::after,
+.bread-wrapper::after,
+.cake-wrapper::after {
   content: "";
   position: absolute;
   bottom: -6px;
@@ -266,62 +313,195 @@ h1, h2, h3, h4, h5, h6 {
   filter: blur(2px);
 }
 
-.juice-cup {
-  width: 60px;
-  height: 85px;
-  background: linear-gradient(to bottom, #f9f9f9, #e0e0e0);
+.juice-cup-wrapper.large,
+.bread-wrapper.large,
+.cake-wrapper.large {
+  height: 170px;
+  margin-bottom: 0;
+}
+
+/* --- Juice glass: open fountain-glass silhouette with a footed base --- */
+.juice-straw {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  width: 7px;
+  height: 46px;
+  background: #7dd3fc;
+  border-radius: 4px;
+  transform: translateX(-50%) rotate(10deg);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+  z-index: 3;
+}
+
+.juice-glass {
+  width: 62px;
+  height: 80px;
   position: relative;
-  clip-path: polygon(18% 100%, 82% 100%, 100% 0, 0 0);
+  clip-path: polygon(22% 100%, 78% 100%, 96% 8%, 90% 0, 10% 0, 4% 8%);
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-size: 2.2rem;
-  box-shadow: inset -5px 0 10px rgba(0,0,0,0.1), inset 5px 0 10px rgba(255,255,255,0.5);
+  align-items: flex-end;
+  padding-bottom: 12px;
+  font-size: 2rem;
+  box-shadow: inset -6px 0 10px rgba(0,0,0,0.12), inset 6px 0 10px rgba(255,255,255,0.35);
+  overflow: hidden;
 }
 
-.juice-cup::after {
+.juice-glass-foot {
+  width: 26px;
+  height: 7px;
+  background: linear-gradient(to bottom, #eef1f4, #d7dbe0);
+  border-radius: 3px 3px 6px 6px;
+  margin-top: -1px;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.08);
+}
+
+.juice-surface {
+  position: absolute;
+  top: 6px;
+  left: 8%;
+  width: 84%;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* A little pulp, kept subtle on purpose */
+.juice-fiber {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.55) 1.4px, transparent 1.6px),
+    radial-gradient(circle, rgba(0,0,0,0.12) 1.4px, transparent 1.6px);
+  background-size: 15px 17px, 19px 21px;
+  background-position: 2px 10px, 11px 27px;
+  opacity: 0.5;
+}
+
+/* Eggplant add-on: distinct pale seeds (cream fill + thin ring), clearly
+   bigger/sparser than the fiber specks so they read as "seeds" and not texture */
+.juice-seeds {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, #fdf6d8 2px, transparent 2.2px),
+    radial-gradient(circle, rgba(120, 90, 20, 0.38) 2.6px, transparent 2.8px),
+    radial-gradient(circle, #fffceb 1.5px, transparent 1.7px),
+    radial-gradient(circle, rgba(120, 90, 20, 0.3) 2px, transparent 2.2px);
+  background-size: 17px 18px, 17px 18px, 13px 15px, 13px 15px;
+  background-position: 3px 5px, 3px 5px, 9px 12px, 9px 12px;
+}
+
+.juice-icon {
+  position: relative;
+  z-index: 3;
+}
+
+.juice-cup-wrapper.large .juice-glass {
+  width: 130px;
+  height: 160px;
+  font-size: 3.4rem;
+  padding-bottom: 22px;
+}
+
+.juice-cup-wrapper.large .juice-glass-foot {
+  width: 50px;
+  height: 13px;
+}
+
+.juice-cup-wrapper.large .juice-straw {
+  top: -58px;
+  width: 11px;
+  height: 78px;
+}
+
+.juice-cup-wrapper.large .juice-surface {
+  height: 16px;
+  top: 10px;
+}
+
+/* --- Bread roll (sandwiches): floury artisan bun --- */
+.bread-roll {
+  width: 92px;
+  height: 60px;
+  border-radius: 50% 50% 46% 46% / 65% 65% 38% 38%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.8) 1.3px, transparent 1.5px) 4px 8px / 16px 14px,
+    radial-gradient(circle, rgba(255,255,255,0.6) 1.1px, transparent 1.4px) 12px 18px / 12px 12px,
+    linear-gradient(150deg, #f6dfb3 0%, #e3b56c 55%, #cf9c4e 100%);
+  box-shadow:
+    0 6px 10px rgba(146, 101, 40, 0.25),
+    inset 0 -8px 12px rgba(146, 101, 40, 0.3),
+    inset 0 5px 8px rgba(255,255,255,0.45);
+}
+
+.bread-filling-icon {
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.15));
+}
+
+.bread-wrapper.large .bread-roll {
+  width: 190px;
+  height: 124px;
+  font-size: 3.6rem;
+}
+
+/* --- Cake: round queque with one portion sliced out --- */
+.cake-round {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f8e3ad, #dba84e 65%, #c69238 100%);
+  box-shadow: 0 6px 10px rgba(164, 116, 36, 0.25), inset 0 -6px 10px rgba(164, 116, 36, 0.3);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.cake-round::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 18px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0));
+  top: 50%;
+  right: -4px;
+  width: 70%;
+  height: 70%;
+  background: var(--card-bg);
+  clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+  transform: translateY(-50%) rotate(8deg);
+  transform-origin: left center;
 }
 
-.juice-cup-lid {
+.cake-slice {
   position: absolute;
-  top: -15px;
-  width: 68px;
-  height: 20px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px 10px 0 0;
-  border: 1px solid #eaeaea;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  box-shadow: 0 -2px 6px rgba(0,0,0,0.05), inset 0 3px 5px rgba(255,255,255,0.8);
+  right: -22px;
+  bottom: 6px;
+  width: 30px;
+  height: 36px;
+  background: linear-gradient(to bottom, #fff6df 0%, #fff6df 72%, #dba84e 72%, #c69238 100%);
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  box-shadow: 2px 3px 5px rgba(164, 116, 36, 0.3);
+  transform: rotate(24deg);
 }
 
-.juice-cup-straw {
-  position: absolute;
-  top: -40px;
-  width: 6px;
-  height: 45px;
-  background: repeating-linear-gradient(
-    45deg,
-    #ffffff,
-    #ffffff 5px,
-    var(--primary-color) 5px,
-    var(--primary-color) 10px
-  );
-  left: 50%;
-  transform: translateX(-50%) rotate(12deg);
-  border-radius: 3px;
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+.cake-wrapper.large .cake-round {
+  width: 170px;
+  height: 170px;
 }
 
-/* Sandwich / Dessert Icon Wrapper */
+.cake-wrapper.large .cake-slice {
+  width: 58px;
+  height: 70px;
+  right: -44px;
+  bottom: 10px;
+}
+
+/* Generic emoji fallback (kept for any future category without a crafted shape) */
 .food-icon-wrapper {
   display: flex;
   justify-content: center;
@@ -337,7 +517,9 @@ h1, h2, h3, h4, h5, h6 {
   transform: scale(1.08) rotate(-3deg);
 }
 
-.product-card:hover .juice-cup {
+.product-card:hover .juice-glass,
+.product-card:hover .bread-roll,
+.product-card:hover .cake-round {
   transform: scale(1.05);
   transition: transform 0.3s;
 }
@@ -688,6 +870,10 @@ h1, h2, h3, h4, h5, h6 {
 
   .container {
     padding: 1rem;
+  }
+
+  .category-section {
+    scroll-margin-top: 190px;
   }
 
   .section-title {

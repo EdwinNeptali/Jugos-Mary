@@ -3,6 +3,7 @@ import Header from './components/Header';
 import ProductList from './components/ProductList';
 import CartSidebar from './components/CartSidebar';
 import CheckoutModal from './components/CheckoutModal';
+import ProductDetailModal from './components/ProductDetailModal';
 import { products } from './data/products';
 
 function App() {
@@ -10,7 +11,8 @@ function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('Jugos');
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const addToCart = (product, options) => {
     setCart((prev) => {
@@ -62,16 +64,17 @@ function App() {
       
       <main>
         <div className="container">
-          <ProductList 
-            products={products} 
-            onAdd={addToCart} 
-            searchTerm={searchTerm} 
-            selectedCategory={selectedCategory} 
+          <ProductList
+            products={products}
+            onAdd={addToCart}
+            onSelect={(product, hasBerenjena) => setSelectedProduct({ product, hasBerenjena })}
+            searchTerm={searchTerm}
+            onActiveCategoryChange={setSelectedCategory}
           />
         </div>
       </main>
 
-      <CartSidebar 
+      <CartSidebar
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
         cart={cart}
@@ -83,10 +86,18 @@ function App() {
       />
 
       {isCheckoutOpen && (
-        <CheckoutModal 
+        <CheckoutModal
           cart={cart}
           total={cartTotal}
           onClose={() => setIsCheckoutOpen(false)}
+        />
+      )}
+
+      {selectedProduct && (
+        <ProductDetailModal
+          product={selectedProduct.product}
+          hasBerenjena={selectedProduct.hasBerenjena}
+          onClose={() => setSelectedProduct(null)}
         />
       )}
     </>
