@@ -1,4 +1,4 @@
-export default function CartLineItem({ item, onIncrement, onDecrement, onRemove }) {
+export default function CartLineItem({ item, onIncrement, onDecrement }) {
   return (
     <div className="cart-item">
       <div className="cart-item-info">
@@ -28,15 +28,6 @@ export default function CartLineItem({ item, onIncrement, onDecrement, onRemove 
           +
         </button>
       </div>
-
-      <button
-        type="button"
-        className="cart-item-remove"
-        onClick={onRemove}
-        aria-label={`Quitar ${item.title} del carrito`}
-      >
-        🗑
-      </button>
     </div>
   );
 }

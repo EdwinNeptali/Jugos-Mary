@@ -4,7 +4,7 @@ import useBodyScrollLock from '../hooks/useBodyScrollLock';
 
 const CLOSE_DRAG_THRESHOLD = 110;
 
-export default function CartSidebar({ isOpen, onClose, cart, total, onIncrement, onDecrement, onRemove, onCheckout }) {
+export default function CartSidebar({ isOpen, onClose, cart, total, onIncrement, onDecrement, onCheckout }) {
   useBodyScrollLock(isOpen);
 
   const [dragY, setDragY] = useState(0);
@@ -89,7 +89,6 @@ export default function CartSidebar({ isOpen, onClose, cart, total, onIncrement,
                 item={item}
                 onIncrement={() => onIncrement(item.cartItemId)}
                 onDecrement={() => onDecrement(item.cartItemId)}
-                onRemove={() => onRemove(item.cartItemId)}
               />
             ))
           )}
