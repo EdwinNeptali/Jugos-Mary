@@ -1,8 +1,12 @@
+// Photo by ABHISHEK HAJARE, used under the Unsplash License.
+import juiceImage from '../assets/juice-glass.jpg';
+
 export const products = [
   {
     id: 'j1',
     title: 'Jugo de Naranja',
     category: 'jugos',
+    image: juiceImage,
     price: 3.00,
     icon: '🍊',
     color: '#fbbf24',
@@ -17,6 +21,7 @@ export const products = [
     id: 'j2',
     title: 'Jugo de Papaya',
     category: 'jugos',
+    image: juiceImage,
     price: 2.50,
     icon: '🥭',
     color: '#f97316',
@@ -31,6 +36,7 @@ export const products = [
     id: 'j3',
     title: 'Piña con Fibra',
     category: 'jugos',
+    image: juiceImage,
     price: 4.00,
     icon: '🍍',
     color: '#eab308', // Yellow
@@ -46,6 +52,7 @@ export const products = [
     id: 'j4',
     title: 'Piña Colada',
     category: 'jugos',
+    image: juiceImage,
     price: 5.00,
     icon: '🍹',
     color: '#eab308',

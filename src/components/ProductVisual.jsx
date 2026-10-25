@@ -2,6 +2,14 @@ export default function ProductVisual({ product, hasBerenjena, large }) {
   const sizeClass = large ? 'large' : '';
 
   if (product.category === 'jugos') {
+    if (product.image) {
+      return (
+        <div className={`juice-cup-wrapper juice-photo-wrapper ${sizeClass}`}>
+          <img className="juice-photo" src={product.image} alt="" aria-hidden="true" />
+        </div>
+      );
+    }
+
     return (
       <div className={`juice-cup-wrapper ${sizeClass}`}>
         <div
