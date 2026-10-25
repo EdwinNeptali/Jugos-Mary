@@ -22,7 +22,7 @@ export default function ProductCard({ product, onAdd, onSelect }) {
         onClick={() => onSelect(product, hasBerenjena)}
         aria-label={`Ver detalles de ${product.title}`}
       >
-        <ProductVisual product={product} hasBerenjena={hasBerenjena} />
+        <ProductVisual product={product} />
         <span className="product-visual-zoom" aria-hidden="true">🔍</span>
       </button>
 

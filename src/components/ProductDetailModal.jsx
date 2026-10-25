@@ -39,7 +39,7 @@ export default function ProductDetailModal({ product, hasBerenjena, onClose }) {
           {product.category !== 'jugos' && (
             <div className="detail-visual-glow" style={{ background: glowColor }}></div>
           )}
-          <ProductVisual product={product} hasBerenjena={hasBerenjena} large />
+          <ProductVisual product={product} large />
         </div>
 
         <h2 className="detail-title">{product.title}</h2>

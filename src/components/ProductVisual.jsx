@@ -1,39 +1,86 @@
-import { lazy, Suspense } from 'react';
+import { useRef, useState } from 'react';
 
-const JuiceGlass3D = lazy(() => import('./JuiceGlass3D'));
-
-export default function ProductVisual({ product, hasBerenjena, large }) {
+export default function ProductVisual({ product, large }) {
   const sizeClass = large ? 'large' : '';
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [zoomOrigin, setZoomOrigin] = useState('50% 50%');
+  const touchGestureRef = useRef(null);
 
   if (product.category === 'jugos') {
-    const liquidPath = 'M47 43 C65 39 115 39 134 44 L131 59 C126 101 122 151 116 178 Q112 195 97 200 Q80 198 72 183 C63 151 53 97 47 43Z';
+    const updateZoomOrigin = (event) => {
+      const bounds = event.currentTarget.getBoundingClientRect();
+      const x = Math.max(0, Math.min(100, ((event.clientX - bounds.left) / bounds.width) * 100));
+      const y = Math.max(0, Math.min(100, ((event.clientY - bounds.top) / bounds.height) * 100));
+      setZoomOrigin(`${x}% ${y}%`);
+    };
+
+    const handlePointerEnter = (event) => {
+      if (large && event.pointerType === 'mouse') {
+        updateZoomOrigin(event);
+        setIsZoomed(true);
+      }
+    };
+
+    const handlePointerMove = (event) => {
+      if (large && (event.pointerType === 'mouse' || touchGestureRef.current?.startedZoomed)) {
+        updateZoomOrigin(event);
+        if (event.pointerType === 'touch' && touchGestureRef.current) {
+          const deltaX = event.clientX - touchGestureRef.current.startX;
+          const deltaY = event.clientY - touchGestureRef.current.startY;
+          if (Math.hypot(deltaX, deltaY) > 5) touchGestureRef.current.moved = true;
+        }
+      }
+    };
+
+    const handlePointerLeave = (event) => {
+      if (event.pointerType === 'mouse') setIsZoomed(false);
+    };
+
+    const handlePointerDown = (event) => {
+      if (large && event.pointerType === 'touch') {
+        updateZoomOrigin(event);
+        touchGestureRef.current = {
+          startX: event.clientX,
+          startY: event.clientY,
+          startedZoomed: isZoomed,
+          moved: false
+        };
+        event.currentTarget.setPointerCapture(event.pointerId);
+      }
+    };
+
+    const handlePointerUp = (event) => {
+      if (event.pointerType === 'touch' && touchGestureRef.current) {
+        const gesture = touchGestureRef.current;
+        if (!gesture.moved) {
+          updateZoomOrigin(event);
+          setIsZoomed(!gesture.startedZoomed);
+        }
+        touchGestureRef.current = null;
+      }
+    };
+
+    const handlePointerCancel = () => {
+      touchGestureRef.current = null;
+    };
 
     return (
-      <div className={`juice-cup-wrapper juice-glass-stage ${sizeClass}`}>
-        {large ? (
-          <Suspense fallback={<img className="juice-glass-3d-fallback" src={product.image} alt={`Vaso de ${product.title}`} />}>
-            <JuiceGlass3D product={product} hasBerenjena={hasBerenjena} />
-          </Suspense>
-        ) : (
-          <svg
-            className={`juice-glass-illustration ${hasBerenjena ? 'with-eggplant' : ''}`}
-            viewBox="39 27 104 212"
-            preserveAspectRatio="xMidYMid meet"
-            role="img"
-            aria-label={`Foto del vaso real de ${product.title}, sin popote ni fondo`}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <image href={product.image} width="194" height="259" preserveAspectRatio="none" />
-            {product.tintColor && (
-              <path
-                d={liquidPath}
-                fill={product.tintColor}
-                opacity={product.tintOpacity}
-                style={{ mixBlendMode: product.tintBlendMode }}
-              />
-            )}
-          </svg>
-        )}
+      <div
+        className={`juice-cup-wrapper juice-glass-stage ${sizeClass} ${isZoomed ? 'is-zoomed' : ''}`}
+        onPointerEnter={handlePointerEnter}
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerCancel}
+      >
+        <img
+          className={`juice-glass-image ${isZoomed ? 'is-zoomed' : ''}`}
+          src={product.image}
+          alt={`Vaso de ${product.title}`}
+          draggable="false"
+          style={large ? { transformOrigin: zoomOrigin } : undefined}
+        />
       </div>
     );
   }
