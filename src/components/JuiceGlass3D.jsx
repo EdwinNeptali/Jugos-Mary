@@ -183,6 +183,8 @@ export default function JuiceGlass3D({ product, hasBerenjena }) {
   const rotationRef = useRef({ x: 0, y: 0, z: 0 });
   const frameRef = useRef(null);
   const dragRef = useRef({ pointerId: null, x: 0, y: 0 });
+  const pointersRef = useRef(new Map());
+  const pinchRef = useRef(null);
   const inertiaRef = useRef({ x: 0, y: 0, active: false });
   const [rendererFailed, setRendererFailed] = useState(false);
 
@@ -215,7 +217,7 @@ export default function JuiceGlass3D({ product, hasBerenjena }) {
     renderer.setClearColor(0xffffff, 0);
     renderer.domElement.className = 'juice-glass-3d-canvas';
     renderer.domElement.setAttribute('role', 'img');
-    renderer.domElement.setAttribute('aria-label', `Vaso 3D de ${product.title}. Desliza para girarlo.`);
+    renderer.domElement.setAttribute('aria-label', `Vaso 3D de ${product.title}. Desliza para girarlo y pellizca para acercar.`);
     renderer.domElement.tabIndex = 0;
     host.appendChild(renderer.domElement);
     rendererRef.current = renderer;
@@ -245,6 +247,8 @@ export default function JuiceGlass3D({ product, hasBerenjena }) {
       if (frameRef.current !== null) window.cancelAnimationFrame(frameRef.current);
       frameRef.current = null;
       inertiaRef.current.active = false;
+      pointersRef.current.clear();
+      pinchRef.current = null;
       scene.traverse((object) => {
         if (!object.isMesh) return;
         object.geometry.dispose();
@@ -299,12 +303,49 @@ export default function JuiceGlass3D({ product, hasBerenjena }) {
   const handlePointerDown = (event) => {
     event.preventDefault();
     event.currentTarget.setPointerCapture(event.pointerId);
-    dragRef.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY };
+    pointersRef.current.set(event.pointerId, { x: event.clientX, y: event.clientY });
     inertiaRef.current = { x: 0, y: 0, active: false };
-    event.currentTarget.classList.add('is-dragging');
+
+    if (pointersRef.current.size === 1) {
+      dragRef.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY };
+      event.currentTarget.classList.add('is-dragging');
+    } else if (pointersRef.current.size === 2) {
+      dragRef.current.pointerId = null;
+      event.currentTarget.classList.remove('is-dragging');
+      const [first, second] = Array.from(pointersRef.current.values());
+      pinchRef.current = {
+        distance: Math.max(1, Math.hypot(second.x - first.x, second.y - first.y)),
+        zoom: cameraRef.current.zoom
+      };
+    }
   };
 
   const handlePointerMove = (event) => {
+    if (!pointersRef.current.has(event.pointerId)) return;
+    pointersRef.current.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+    if (pinchRef.current) {
+      const [first, second] = Array.from(pointersRef.current.values());
+      const camera = cameraRef.current;
+      if (!camera || !first || !second) return;
+      const distance = Math.hypot(second.x - first.x, second.y - first.y);
+      camera.zoom = THREE.MathUtils.clamp(
+        pinchRef.current.zoom * distance / pinchRef.current.distance,
+        1,
+        2.2
+      );
+      camera.updateProjectionMatrix();
+      scheduleRender(
+        rendererRef.current,
+        sceneRef.current,
+        camera,
+        frameRef,
+        inertiaRef,
+        modelRef.current
+      );
+      return;
+    }
+
     if (dragRef.current.pointerId !== event.pointerId) return;
     const deltaX = event.clientX - dragRef.current.x;
     const deltaY = event.clientY - dragRef.current.y;
@@ -321,9 +362,42 @@ export default function JuiceGlass3D({ product, hasBerenjena }) {
   };
 
   const handlePointerUp = (event) => {
+    if (!pointersRef.current.has(event.pointerId)) return;
+    pointersRef.current.delete(event.pointerId);
+
+    if (pinchRef.current) {
+      pinchRef.current = null;
+      const camera = cameraRef.current;
+      if (camera) {
+        camera.zoom = 1;
+        camera.updateProjectionMatrix();
+      }
+      inertiaRef.current.active = false;
+      const remaining = Array.from(pointersRef.current.entries())[0];
+      if (remaining) {
+        dragRef.current = { pointerId: remaining[0], ...remaining[1] };
+        event.currentTarget.classList.add('is-dragging');
+      } else {
+        dragRef.current.pointerId = null;
+        event.currentTarget.classList.remove('is-dragging');
+      }
+      if (rendererRef.current && camera) {
+        scheduleRender(
+          rendererRef.current,
+          sceneRef.current,
+          camera,
+          frameRef,
+          inertiaRef,
+          modelRef.current
+        );
+      }
+      return;
+    }
+
     if (dragRef.current.pointerId !== event.pointerId) return;
     dragRef.current.pointerId = null;
     event.currentTarget.classList.remove('is-dragging');
+    inertiaRef.current.active = true;
     inertiaRef.current.active = true;
     if (rendererRef.current) {
       scheduleRender(
