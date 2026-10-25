@@ -36,7 +36,9 @@ export default function ProductDetailModal({ product, hasBerenjena, onClose }) {
         <button className="btn-close" onClick={onClose} aria-label="Cerrar">×</button>
 
         <div className="detail-visual-stage">
-          <div className="detail-visual-glow" style={{ background: glowColor }}></div>
+          {product.category !== 'jugos' && (
+            <div className="detail-visual-glow" style={{ background: glowColor }}></div>
+          )}
           <ProductVisual product={product} hasBerenjena={hasBerenjena} large />
         </div>
 
