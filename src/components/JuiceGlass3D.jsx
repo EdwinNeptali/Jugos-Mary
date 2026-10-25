@@ -52,14 +52,9 @@ function makeJuice(product, hasBerenjena) {
   ];
   const juice = new THREE.Mesh(
     makeLathe(sideProfile, 72),
-    new THREE.MeshPhysicalMaterial({
+    new THREE.MeshBasicMaterial({
       color,
-      emissive: color,
-      emissiveIntensity: 0.14,
-      roughness: hasBerenjena ? 0.4 : product.id === 'j4' ? 0.3 : 0.24,
-      metalness: 0,
-      clearcoat: 0.18,
-      clearcoatRoughness: 0.24
+      toneMapped: false
     })
   );
 
@@ -109,14 +104,14 @@ function addGlassHighlights(group) {
 function createGlassModel(product, hasBerenjena) {
   const model = new THREE.Group();
   const glassMaterial = new THREE.MeshPhysicalMaterial({
-    color: '#dff4ff',
-    roughness: 0.12,
-    metalness: 0.03,
-    transmission: 0.78,
-    thickness: 0.18,
-    ior: 1.18,
+    color: '#ffffff',
+    roughness: 0.08,
+    metalness: 0,
+    transmission: 0.12,
+    thickness: 0.08,
+    ior: 1.1,
     transparent: true,
-    opacity: 0.52,
+    opacity: 0.16,
     side: THREE.DoubleSide,
     depthWrite: false
   });
@@ -397,7 +392,6 @@ export default function JuiceGlass3D({ product, hasBerenjena }) {
     if (dragRef.current.pointerId !== event.pointerId) return;
     dragRef.current.pointerId = null;
     event.currentTarget.classList.remove('is-dragging');
-    inertiaRef.current.active = true;
     inertiaRef.current.active = true;
     if (rendererRef.current) {
       scheduleRender(
