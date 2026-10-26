@@ -330,7 +330,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sandwich-photo-wrapper:not(.large) {
-  width: calc(100% - 12px);
+  width: calc(100% - 28px);
   margin-right: auto;
   margin-left: auto;
 }
