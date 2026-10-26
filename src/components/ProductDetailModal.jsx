@@ -30,7 +30,7 @@ export default function ProductDetailModal({ product, hasBerenjena, variantLabel
   return (
     <div className="detail-overlay" onClick={onClose}>
       <div
-        className="detail-content"
+        className={`detail-content ${product.category === 'sandwich' ? 'is-sandwich' : ''}`}
         role="dialog"
         aria-modal="true"
         aria-label={product.title}
