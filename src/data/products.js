@@ -60,7 +60,7 @@ export const products = [
   },
   {
     id: 's1',
-    title: 'Sándwich de Pollo',
+    title: 'Pollo',
     category: 'sandwich',
     price: 1.50,
     icon: '🍗',
@@ -71,7 +71,7 @@ export const products = [
   },
   {
     id: 's2',
-    title: 'Sándwich de Huevo',
+    title: 'Huevo',
     category: 'sandwich',
     image: eggSandwichPhoto,
     price: 1.50,
@@ -83,7 +83,7 @@ export const products = [
   },
   {
     id: 's3',
-    title: 'Sándwich de Queso Suizo',
+    title: 'Queso Suizo',
     category: 'sandwich',
     price: 1.50,
     icon: '🧀',
@@ -94,7 +94,7 @@ export const products = [
   },
   {
     id: 's4',
-    title: 'Sándwich de Palta',
+    title: 'Palta',
     category: 'sandwich',
     price: 1.50,
     icon: '🥑',
