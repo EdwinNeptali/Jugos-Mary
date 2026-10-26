@@ -66,7 +66,7 @@ export default function ProductCard({ product, onAdd, onSelect }) {
               checked={hasBerenjena}
               onChange={(e) => setHasBerenjena(e.target.checked)}
             />
-            <span>+ Berenjena (S/ 1.00)</span>
+            <span>Berenjena</span>
           </label>
         </div>
       )}
