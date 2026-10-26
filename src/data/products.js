@@ -5,6 +5,7 @@ import pineappleJuiceColada from '../assets/pineapple-juice-colada.png';
 import chickenSandwichPhoto from '../assets/chicken-sandwich.png';
 import eggSandwichPhoto from '../assets/egg-sandwich.png';
 import cheeseSandwichPhoto from '../assets/cheese-sandwich.png';
+import avocadoSandwichPhoto from '../assets/avocado-sandwich.png';
 
 export const products = [
   {
@@ -100,6 +101,7 @@ export const products = [
     id: 's4',
     title: 'Palta',
     category: 'sandwich',
+    image: avocadoSandwichPhoto,
     price: 1.50,
     icon: '🥑',
     description: 'Palta fresca, pan del día.',
