@@ -59,7 +59,7 @@ export default function ProductCard({ product, onAdd, onSelect }) {
       )}
 
       {product.allowBerenjena && (
-        <div className="product-options">
+        <div className="product-options product-berenjena-option">
           <label>
             <input
               type="checkbox"
