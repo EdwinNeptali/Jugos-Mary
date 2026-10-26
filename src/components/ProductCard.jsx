@@ -7,6 +7,7 @@ export default function ProductCard({ product, onAdd, onSelect }) {
   const [showAddedMessage, setShowAddedMessage] = useState(false);
 
   const selectedVariant = product.variants?.find((variant) => variant.id === selectedVariantId);
+  const displayedPrice = product.price + (hasBerenjena ? 1 : 0);
   const getProductOptions = () => ({
     hasBerenjena,
     ...(selectedVariant && {
@@ -76,7 +77,7 @@ export default function ProductCard({ product, onAdd, onSelect }) {
       )}
 
       <div className="product-card-actions">
-        <div className="product-price">S/ {product.price.toFixed(2)}</div>
+        <div className="product-price">S/ {displayedPrice.toFixed(2)}</div>
         <button
           type="button"
           className={`add-button ${showAddedMessage ? 'added' : ''}`}
