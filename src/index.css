@@ -482,9 +482,8 @@ h1, h2, h3, h4, h5, h6 {
 .product-price {
   font-size: 1.25rem;
   font-weight: 800;
-  margin-bottom: 0.8rem;
   color: var(--primary-color);
-  width: 100%;
+  line-height: 1;
 }
 
 .product-options {
@@ -542,35 +541,46 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .add-button {
-  background-color: #fff;
-  color: var(--text-color);
-  border: 2px solid var(--border-color);
-  padding: 0.5rem;
-  border-radius: var(--radius-md);
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
   cursor: pointer;
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 500;
+  font-size: 1.8rem;
   transition: all 0.3s ease;
   font-family: 'Inter', sans-serif;
-  width: 100%;
-  height: 44px; /* Ensure consistent height */
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  line-height: 1;
+  box-shadow: 0 3px 9px rgba(255, 112, 67, 0.28);
+}
+
+.product-card-actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: auto;
 }
 
 .add-button:hover {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-  color: white;
+  background-color: #f4511e;
   box-shadow: 0 4px 12px rgba(255, 112, 67, 0.2);
+  transform: scale(1.05);
 }
 
 .add-button.added {
   background-color: var(--secondary-color);
-  border-color: var(--secondary-color);
   color: white;
   cursor: not-allowed;
+  font-size: 1.35rem;
 }
 
 /* Toast Notification */

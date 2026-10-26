@@ -40,8 +40,6 @@ export default function ProductCard({ product, onAdd, onSelect }) {
       <h4 className="product-title">{product.title}</h4>
       <p className="product-desc">{product.description}</p>
 
-      <div className="product-price">S/ {product.price.toFixed(2)}</div>
-
       {product.variants && (
         <div className="product-options product-variant-options" role="radiogroup" aria-label={`Variante de ${product.title}`}>
           {product.variants.map((variant) => (
@@ -73,12 +71,17 @@ export default function ProductCard({ product, onAdd, onSelect }) {
         </div>
       )}
 
-      <button
-        className={`add-button ${showAddedMessage ? 'added' : ''}`}
-        onClick={handleAdd}
-      >
-        {showAddedMessage ? '¡Agregado!' : 'Agregar'}
-      </button>
+      <div className="product-card-actions">
+        <div className="product-price">S/ {product.price.toFixed(2)}</div>
+        <button
+          type="button"
+          className={`add-button ${showAddedMessage ? 'added' : ''}`}
+          onClick={handleAdd}
+          aria-label={showAddedMessage ? `${product.title} agregado` : `Agregar ${product.title}`}
+        >
+          <span aria-hidden="true">{showAddedMessage ? '✓' : '+'}</span>
+        </button>
+      </div>
     </div>
   );
 }
