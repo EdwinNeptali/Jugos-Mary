@@ -5,7 +5,11 @@ export default function OrderSummary({ cart, total }) {
       <div className="receipt">
         {cart.map(item => (
           <div className="receipt-item" key={item.cartItemId}>
-            <span className="receipt-item-name">{item.quantity}x {item.title}</span>
+            <span className="receipt-item-name">
+              {item.quantity}x {item.title}
+              {item.options?.variantLabel && ` (${item.options.variantLabel})`}
+              {item.options?.hasBerenjena && ' (+ Berenjena)'}
+            </span>
             <span className="receipt-item-price">S/ {(item.finalPrice * item.quantity).toFixed(2)}</span>
           </div>
         ))}

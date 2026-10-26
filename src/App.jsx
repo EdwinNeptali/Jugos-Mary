@@ -16,8 +16,7 @@ function App() {
 
   const addToCart = (product, options) => {
     setCart((prev) => {
-      // Create a unique key based on product id and options (e.g. hasBerenjena)
-      const cartItemId = `${product.id}-${options?.hasBerenjena ? 'b' : 'n'}`;
+      const cartItemId = `${product.id}-${options?.variantId ?? 'default'}-${options?.hasBerenjena ? 'b' : 'n'}`;
       const existingItem = prev.find(item => item.cartItemId === cartItemId);
 
       if (existingItem) {
@@ -78,7 +77,7 @@ function App() {
           <ProductList
             products={products}
             onAdd={addToCart}
-            onSelect={(product, hasBerenjena) => setSelectedProduct({ product, hasBerenjena })}
+            onSelect={(product, options) => setSelectedProduct({ product, ...options })}
             searchTerm={searchTerm}
             onActiveCategoryChange={setSelectedCategory}
           />
@@ -110,6 +109,7 @@ function App() {
         <ProductDetailModal
           product={selectedProduct.product}
           hasBerenjena={selectedProduct.hasBerenjena}
+          variantLabel={selectedProduct.variantLabel}
           onClose={() => setSelectedProduct(null)}
         />
       )}

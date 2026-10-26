@@ -3,10 +3,20 @@ import ProductVisual from './ProductVisual';
 
 export default function ProductCard({ product, onAdd, onSelect }) {
   const [hasBerenjena, setHasBerenjena] = useState(false);
+  const [selectedVariantId, setSelectedVariantId] = useState(product.defaultVariantId ?? '');
   const [showAddedMessage, setShowAddedMessage] = useState(false);
 
+  const selectedVariant = product.variants?.find((variant) => variant.id === selectedVariantId);
+  const getProductOptions = () => ({
+    hasBerenjena,
+    ...(selectedVariant && {
+      variantId: selectedVariant.id,
+      variantLabel: selectedVariant.cartLabel
+    })
+  });
+
   const handleAdd = () => {
-    onAdd(product, { hasBerenjena });
+    onAdd(product, getProductOptions());
     setHasBerenjena(false);
     setShowAddedMessage(true);
     setTimeout(() => {
@@ -19,7 +29,7 @@ export default function ProductCard({ product, onAdd, onSelect }) {
       <button
         type="button"
         className="product-visual-trigger"
-        onClick={() => onSelect(product, hasBerenjena)}
+        onClick={() => onSelect(product, getProductOptions())}
         aria-label={`Ver detalles de ${product.title}`}
       >
         <ProductVisual product={product} />
@@ -30,6 +40,24 @@ export default function ProductCard({ product, onAdd, onSelect }) {
       <p className="product-desc">{product.description}</p>
 
       <div className="product-price">S/ {product.price.toFixed(2)}</div>
+
+      {product.variants && (
+        <div className="product-options product-variant-options" role="radiogroup" aria-label={`Variante de ${product.title}`}>
+          {product.variants.map((variant) => (
+            <label className={selectedVariantId === variant.id ? 'selected' : ''} key={variant.id}>
+              <input
+                type="radio"
+                name={`variant-${product.id}`}
+                value={variant.id}
+                checked={selectedVariantId === variant.id}
+                onChange={() => setSelectedVariantId(variant.id)}
+                aria-label={variant.label === 'Sin fibra' ? 'Sin fibra, piña colada' : variant.label}
+              />
+              <span>{variant.label}</span>
+            </label>
+          ))}
+        </div>
+      )}
 
       {product.allowBerenjena && (
         <div className="product-options">

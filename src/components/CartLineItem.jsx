@@ -2,6 +2,9 @@ export default function CartLineItem({ item, onIncrement, onDecrement }) {
   return (
     <div className="cart-item">
       <div className="cart-item-title">{item.title}</div>
+      {item.options?.variantLabel && (
+        <span className="cart-item-meta">{item.options.variantLabel}</span>
+      )}
       {item.options?.hasBerenjena && (
         <span className="cart-item-meta">+ Berenjena</span>
       )}

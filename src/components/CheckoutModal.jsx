@@ -69,7 +69,8 @@ export default function CheckoutModal({ cart, total, onClose }) {
     mensaje += `*📋 Detalle del pedido:*\n`;
 
     cart.forEach(item => {
-      let extra = item.options?.hasBerenjena ? ' (+ Berenjena)' : '';
+      let extra = item.options?.variantLabel ? ` (${item.options.variantLabel})` : '';
+      if (item.options?.hasBerenjena) extra += ' (+ Berenjena)';
       mensaje += `▪ ${item.quantity}x ${item.title}${extra}: S/ ${(item.finalPrice * item.quantity).toFixed(2)}\n`;
     });
 

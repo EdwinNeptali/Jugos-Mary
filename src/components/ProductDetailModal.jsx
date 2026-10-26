@@ -3,7 +3,7 @@ import './ProductDetailModal.css';
 import ProductVisual from './ProductVisual';
 import useBodyScrollLock from '../hooks/useBodyScrollLock';
 
-export default function ProductDetailModal({ product, hasBerenjena, onClose }) {
+export default function ProductDetailModal({ product, hasBerenjena, variantLabel, onClose }) {
   useBodyScrollLock(true);
 
   useEffect(() => {
@@ -17,6 +17,9 @@ export default function ProductDetailModal({ product, hasBerenjena, onClose }) {
   const infoRows = [];
   if (hasBerenjena && product.berenjenaBenefit) {
     infoRows.push({ icon: '🍆', text: product.berenjenaBenefit });
+  }
+  if (variantLabel) {
+    infoRows.push({ icon: '🍍', text: variantLabel });
   }
   if (product.volume) {
     infoRows.push({ icon: '🥤', text: `Contiene ${product.volume}` });

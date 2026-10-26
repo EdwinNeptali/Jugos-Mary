@@ -1,4 +1,3 @@
-import juiceGlassPhoto from '../assets/juice-glass-cutout.png';
 import orangeJuiceGlass from '../assets/orange-juice-glass.png';
 import papayaJuiceGlass from '../assets/papaya-juice-glass.png';
 import pineappleJuiceGlass from '../assets/pineapple-juice-glass.png';
@@ -38,36 +37,24 @@ export const products = [
   },
   {
     id: 'j3',
-    title: 'Piña con Fibra',
+    title: 'Jugo de Piña',
     category: 'jugos',
     image: pineappleJuiceGlass,
-    price: 4.00,
+    price: 5.00,
     icon: '🍍',
     color: '#ffd21f',
     highlightColor: '#ffeb75',
-    description: 'Bromelina, Fibra, Vitamina C.',
+    description: 'Piña colada, con o sin fibra.',
     allowBerenjena: true,
-    hasFiber: true,
+    defaultVariantId: 'fiber',
+    variants: [
+      { id: 'fiber', label: 'Con fibra', cartLabel: 'Con fibra' },
+      { id: 'colada', label: 'Sin fibra', cartLabel: 'Piña colada (sin fibra)' }
+    ],
     volume: '250 ml',
-    prep: 'Piña fresca licuada con su fibra natural, sin colar.',
-    benefits: ['Contiene bromelina digestiva', 'Alto en Vitamina C', 'Con fibra natural'],
+    prep: 'Elige piña fresca con fibra o colada, sin fibra.',
+    benefits: ['Contiene bromelina digestiva', 'Alto en Vitamina C'],
     berenjenaBenefit: 'Se suma a la fibra de la piña para mayor saciedad.'
-  },
-  {
-    id: 'j4',
-    title: 'Piña Colada',
-    category: 'jugos',
-    image: juiceGlassPhoto,
-    price: 5.00,
-    icon: '🍹',
-    color: '#f1dfaa',
-    highlightColor: '#fff3d2',
-    description: 'Vitamina C, Magnesio, Hierro.',
-    allowBerenjena: true,
-    volume: '250 ml',
-    prep: 'Piña y un toque de crema de coco licuados, sin alcohol.',
-    benefits: ['Vitamina C y Magnesio', 'Sabor tropical y cremoso', 'Hidratante y refrescante'],
-    berenjenaBenefit: 'Aporta fibra extra sin alterar su sabor cremoso.'
   },
   {
     id: 's1',
