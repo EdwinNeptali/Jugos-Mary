@@ -329,12 +329,6 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-.sandwich-photo-wrapper:not(.large) {
-  width: calc(100% - 28px);
-  margin-right: auto;
-  margin-left: auto;
-}
-
 .sandwich-photo-wrapper.large {
   height: 170px;
   margin-bottom: 0;
@@ -354,8 +348,8 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 40%;
+  object-fit: contain;
+  object-position: center;
   user-select: none;
   -webkit-user-drag: none;
   transition: transform 180ms ease;
