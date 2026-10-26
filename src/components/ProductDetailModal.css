@@ -69,6 +69,7 @@
 }
 
 .detail-visual-stage.is-sandwich .sandwich-photo-wrapper.large {
+  width: calc(100% - 1rem);
   height: 320px;
   flex: 0 0 320px;
 }
