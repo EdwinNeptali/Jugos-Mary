@@ -6,7 +6,7 @@ import pineappleJuiceColada from '../assets/pineapple-juice-colada.png';
 export const products = [
   {
     id: 'j1',
-    title: 'Jugo de Naranja',
+    title: 'Naranja',
     category: 'jugos',
     image: orangeJuiceGlass,
     price: 3.00,
@@ -22,7 +22,7 @@ export const products = [
   },
   {
     id: 'j2',
-    title: 'Jugo de Papaya',
+    title: 'Papaya',
     category: 'jugos',
     image: papayaJuiceGlass,
     price: 2.50,
@@ -38,7 +38,7 @@ export const products = [
   },
   {
     id: 'j3',
-    title: 'Jugo de Piña',
+    title: 'Piña',
     category: 'jugos',
     image: pineappleJuiceGlass,
     price: 5.00,
