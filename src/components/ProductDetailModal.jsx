@@ -44,10 +44,6 @@ export default function ProductDetailModal({ product, hasBerenjena, variantLabel
           )}
           <ProductVisual product={product} image={variantImage ?? product.image} large />
         </div>
-        {product.category === 'sandwich' && (
-          <p className="detail-zoom-hint">Pasa el cursor sobre la imagen para acercarla. En móvil, tócala para ampliar o reducir.</p>
-        )}
-
         <h2 className="detail-title">{product.title}</h2>
         <div className="detail-price">S/ {product.price.toFixed(2)}</div>
 

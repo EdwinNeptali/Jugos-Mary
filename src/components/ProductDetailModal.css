@@ -74,13 +74,6 @@
   flex: 0 0 330px;
 }
 
-.detail-zoom-hint {
-  margin: -2px 0 12px;
-  color: var(--text-muted);
-  font-size: 0.75rem;
-  line-height: 1.4;
-}
-
 .detail-visual-glow {
   position: absolute;
   top: 50%;
