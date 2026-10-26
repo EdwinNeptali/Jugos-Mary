@@ -515,33 +515,56 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .product-variant-options {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.3rem;
-  padding: 0.3rem;
+  grid-template-columns: repeat(2, 1fr);
+  width: fit-content;
+  min-width: 150px;
+  padding: 3px;
   margin-bottom: 0.45rem;
-  font-size: 0.75rem;
-}
-
-.product-variant-options label {
-  min-width: 0;
-  gap: 0.3rem;
-  padding: 0.2rem 0.15rem;
-  border: 1px solid var(--border-color);
+  overflow: hidden;
   border-radius: 999px;
-}
-
-.product-variant-options label.selected {
-  border-color: var(--primary-color);
   background: #fff;
+  font-size: 0.72rem;
 }
 
-.product-variant-options input[type="radio"] {
-  width: 12px;
-  height: 12px;
-  flex: 0 0 12px;
-  margin: 0;
-  accent-color: var(--primary-color);
+.product-variant-indicator {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc(50% - 3px);
+  border-radius: 999px;
+  background: var(--primary-color);
+  transition: transform 220ms ease;
+}
+
+.product-variant-options.is-colada .product-variant-indicator {
+  transform: translateX(100%);
+}
+
+.product-variant-choice {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  padding: 0.3rem 0.45rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.product-variant-choice[aria-pressed="true"] {
+  color: #fff;
+  font-weight: 700;
+}
+
+.product-variant-choice:focus-visible {
+  outline: 2px solid var(--text-color);
+  outline-offset: -2px;
 }
 
 .product-berenjena-option {

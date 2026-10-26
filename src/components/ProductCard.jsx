@@ -41,19 +41,23 @@ export default function ProductCard({ product, onAdd, onSelect }) {
       <p className="product-desc">{product.description}</p>
 
       {product.variants && (
-        <div className="product-options product-variant-options" role="radiogroup" aria-label={`Variante de ${product.title}`}>
+        <div
+          className={`product-options product-variant-options ${selectedVariantId === product.variants[1]?.id ? 'is-colada' : ''}`}
+          role="group"
+          aria-label={`Variante de ${product.title}`}
+        >
+          <span className="product-variant-indicator" aria-hidden="true" />
           {product.variants.map((variant) => (
-            <label className={selectedVariantId === variant.id ? 'selected' : ''} key={variant.id}>
-              <input
-                type="radio"
-                name={`variant-${product.id}`}
-                value={variant.id}
-                checked={selectedVariantId === variant.id}
-                onChange={() => setSelectedVariantId(variant.id)}
-                aria-label={variant.label === 'Sin fibra' ? 'Sin fibra, piña colada' : variant.label}
-              />
-              <span>{variant.label}</span>
-            </label>
+            <button
+              type="button"
+              className="product-variant-choice"
+              key={variant.id}
+              aria-pressed={selectedVariantId === variant.id}
+              aria-label={variant.label === 'Sin fibra' ? 'Sin fibra, piña colada' : variant.label}
+              onClick={() => setSelectedVariantId(variant.id)}
+            >
+              {variant.label}
+            </button>
           ))}
         </div>
       )}
