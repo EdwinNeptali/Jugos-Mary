@@ -354,6 +354,7 @@ h1, h2, h3, h4, h5, h6 {
 .sandwich-photo {
   display: block;
   width: 180%;
+  flex: 0 0 180%;
   height: 100%;
   object-fit: cover;
   object-position: center;
