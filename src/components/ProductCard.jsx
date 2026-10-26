@@ -30,7 +30,7 @@ export default function ProductCard({ product, onAdd, onSelect }) {
     <div className="product-card">
       <button
         type="button"
-        className="product-visual-trigger"
+        className={`product-visual-trigger ${product.category === 'sandwich' ? 'is-sandwich' : ''}`}
         onClick={() => onSelect(product, getProductOptions())}
         aria-label={`Ver detalles de ${product.title}`}
       >

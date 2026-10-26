@@ -257,6 +257,11 @@ h1, h2, h3, h4, h5, h6 {
   font: inherit;
 }
 
+.product-visual-trigger.is-sandwich {
+  width: calc(100% + 2.5rem);
+  margin: -1.25rem -1.25rem 1rem;
+}
+
 .product-visual-zoom {
   position: absolute;
   top: 0;
@@ -320,8 +325,8 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 130px;
-  margin-bottom: 1rem;
+  height: 205px;
+  margin-bottom: 0;
   overflow: hidden;
 }
 
@@ -343,9 +348,9 @@ h1, h2, h3, h4, h5, h6 {
 .sandwich-photo {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
-  object-position: center 58%;
+  object-position: center 40%;
   user-select: none;
   -webkit-user-drag: none;
   transition: transform 180ms ease;
@@ -353,6 +358,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .sandwich-photo.is-zoomed {
   transform: scale(2.2);
+}
+
+.sandwich-photo-wrapper.large .sandwich-photo {
+  object-fit: contain;
+  object-position: center;
 }
 
 /* --- Juice glass: open fountain-glass silhouette with a footed base --- */
