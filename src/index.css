@@ -333,6 +333,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 55%;
   margin-right: auto;
   margin-left: auto;
+  overflow: visible;
 }
 
 .sandwich-photo-wrapper.large {
@@ -352,9 +353,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .sandwich-photo {
   display: block;
-  width: 100%;
+  width: 180%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   user-select: none;
   -webkit-user-drag: none;
@@ -366,6 +367,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sandwich-photo-wrapper.large .sandwich-photo {
+  width: 100%;
   object-fit: contain;
   object-position: center;
 }
