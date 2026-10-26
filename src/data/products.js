@@ -2,6 +2,7 @@ import orangeJuiceGlass from '../assets/orange-juice-glass.png';
 import papayaJuiceGlass from '../assets/papaya-juice-glass.png';
 import pineappleJuiceGlass from '../assets/pineapple-juice-glass.png';
 import pineappleJuiceColada from '../assets/pineapple-juice-colada.png';
+import chickenSandwichPhoto from '../assets/chicken-sandwich.png';
 import eggSandwichPhoto from '../assets/egg-sandwich.png';
 
 export const products = [
@@ -62,6 +63,7 @@ export const products = [
     id: 's1',
     title: 'Pollo',
     category: 'sandwich',
+    image: chickenSandwichPhoto,
     price: 1.50,
     icon: '🍗',
     description: 'Pollo deshilachado, pan del día.',
