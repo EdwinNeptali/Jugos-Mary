@@ -3,7 +3,7 @@ import './ProductDetailModal.css';
 import ProductVisual from './ProductVisual';
 import useBodyScrollLock from '../hooks/useBodyScrollLock';
 
-export default function ProductDetailModal({ product, hasBerenjena, variantLabel, onClose }) {
+export default function ProductDetailModal({ product, hasBerenjena, variantLabel, variantImage, onClose }) {
   useBodyScrollLock(true);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function ProductDetailModal({ product, hasBerenjena, variantLabel
           {product.category !== 'jugos' && (
             <div className="detail-visual-glow" style={{ background: glowColor }}></div>
           )}
-          <ProductVisual product={product} large />
+          <ProductVisual product={product} image={variantImage ?? product.image} large />
         </div>
 
         <h2 className="detail-title">{product.title}</h2>

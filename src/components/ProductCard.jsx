@@ -11,7 +11,8 @@ export default function ProductCard({ product, onAdd, onSelect }) {
     hasBerenjena,
     ...(selectedVariant && {
       variantId: selectedVariant.id,
-      variantLabel: selectedVariant.cartLabel
+      variantLabel: selectedVariant.cartLabel,
+      variantImage: selectedVariant.image
     })
   });
 
@@ -32,7 +33,7 @@ export default function ProductCard({ product, onAdd, onSelect }) {
         onClick={() => onSelect(product, getProductOptions())}
         aria-label={`Ver detalles de ${product.title}`}
       >
-        <ProductVisual product={product} />
+        <ProductVisual product={product} image={selectedVariant?.image ?? product.image} />
         <span className="product-visual-zoom" aria-hidden="true">🔍</span>
       </button>
 

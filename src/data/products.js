@@ -1,6 +1,7 @@
 import orangeJuiceGlass from '../assets/orange-juice-glass.png';
 import papayaJuiceGlass from '../assets/papaya-juice-glass.png';
 import pineappleJuiceGlass from '../assets/pineapple-juice-glass.png';
+import pineappleJuiceColada from '../assets/pineapple-juice-colada.png';
 
 export const products = [
   {
@@ -48,8 +49,8 @@ export const products = [
     allowBerenjena: true,
     defaultVariantId: 'fiber',
     variants: [
-      { id: 'fiber', label: 'Con fibra', cartLabel: 'Con fibra' },
-      { id: 'colada', label: 'Sin fibra', cartLabel: 'Piña colada (sin fibra)' }
+      { id: 'fiber', label: 'Con fibra', cartLabel: 'Con fibra', image: pineappleJuiceGlass },
+      { id: 'colada', label: 'Sin fibra', cartLabel: 'Piña colada (sin fibra)', image: pineappleJuiceColada }
     ],
     volume: '250 ml',
     prep: 'Elige piña fresca con fibra o colada, sin fibra.',

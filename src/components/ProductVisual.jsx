@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 
-export default function ProductVisual({ product, large }) {
+export default function ProductVisual({ product, image = product.image, large }) {
   const sizeClass = large ? 'large' : '';
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomOrigin, setZoomOrigin] = useState('50% 50%');
@@ -76,7 +76,7 @@ export default function ProductVisual({ product, large }) {
       >
         <img
           className={`juice-glass-image ${isZoomed ? 'is-zoomed' : ''}`}
-          src={product.image}
+          src={image}
           alt={`Vaso de ${product.title}`}
           draggable="false"
           style={large ? { transformOrigin: zoomOrigin } : undefined}

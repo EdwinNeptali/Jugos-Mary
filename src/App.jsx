@@ -110,6 +110,7 @@ function App() {
           product={selectedProduct.product}
           hasBerenjena={selectedProduct.hasBerenjena}
           variantLabel={selectedProduct.variantLabel}
+          variantImage={selectedProduct.variantImage}
           onClose={() => setSelectedProduct(null)}
         />
       )}
