@@ -30,7 +30,7 @@ export default function ProductDetailModal({ product, hasBerenjena, variantLabel
   return (
     <div className="detail-overlay" onClick={onClose}>
       <div
-        className={`detail-content ${product.category === 'sandwich' ? 'is-sandwich' : ''}`}
+        className={`detail-content ${product.category === 'sandwich' ? 'is-sandwich' : ''} ${product.category === 'postre' ? 'is-dessert' : ''}`}
         role="dialog"
         aria-modal="true"
         aria-label={product.title}
@@ -38,7 +38,7 @@ export default function ProductDetailModal({ product, hasBerenjena, variantLabel
       >
         <button className="btn-close" onClick={onClose} aria-label="Cerrar">×</button>
 
-        <div className={`detail-visual-stage ${product.category === 'sandwich' ? 'is-sandwich' : ''}`}>
+        <div className={`detail-visual-stage ${product.category === 'sandwich' ? 'is-sandwich' : ''} ${product.category === 'postre' ? 'is-dessert' : ''}`}>
           {product.category !== 'jugos' && (
             <div className="detail-visual-glow" style={{ background: glowColor }}></div>
           )}

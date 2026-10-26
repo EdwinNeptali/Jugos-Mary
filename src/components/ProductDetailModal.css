@@ -36,6 +36,10 @@
   max-width: 360px;
 }
 
+.detail-content.is-dessert {
+  max-width: 440px;
+}
+
 .detail-content .btn-close {
   position: absolute;
   top: 16px;
@@ -72,6 +76,11 @@
   width: 100%;
   height: 330px;
   flex: 0 0 330px;
+}
+
+.detail-visual-stage.is-dessert .cake-photo-wrapper.large {
+  height: 380px;
+  flex: 0 0 380px;
 }
 
 .detail-visual-glow {
@@ -202,6 +211,10 @@
     animation: detailSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
+  .detail-visual-stage.is-dessert .cake-photo-wrapper.large {
+    height: min(360px, 42vh);
+    flex-basis: min(360px, 42vh);
+  }
 }
 
 @keyframes detailSlideUp {
