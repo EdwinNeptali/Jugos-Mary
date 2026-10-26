@@ -482,6 +482,7 @@ h1, h2, h3, h4, h5, h6 {
 .product-price {
   font-size: 1.05rem;
   font-weight: 900;
+  -webkit-text-stroke: 0.65px currentColor;
   color: var(--primary-color);
   line-height: 1;
 }
