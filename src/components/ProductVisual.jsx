@@ -86,6 +86,14 @@ export default function ProductVisual({ product, image = product.image, large })
   }
 
   if (product.category === 'sandwich') {
+    if (product.image) {
+      return (
+        <div className={`sandwich-photo-wrapper ${sizeClass}`}>
+          <img className="sandwich-photo" src={product.image} alt={product.title} draggable="false" />
+        </div>
+      );
+    }
+
     return (
       <div className={`bread-wrapper ${sizeClass}`}>
         <div className="bread-roll">

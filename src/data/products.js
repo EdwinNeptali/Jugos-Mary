@@ -2,6 +2,7 @@ import orangeJuiceGlass from '../assets/orange-juice-glass.png';
 import papayaJuiceGlass from '../assets/papaya-juice-glass.png';
 import pineappleJuiceGlass from '../assets/pineapple-juice-glass.png';
 import pineappleJuiceColada from '../assets/pineapple-juice-colada.png';
+import eggSandwichPhoto from '../assets/egg-sandwich.png';
 
 export const products = [
   {
@@ -72,6 +73,7 @@ export const products = [
     id: 's2',
     title: 'Sándwich de Huevo',
     category: 'sandwich',
+    image: eggSandwichPhoto,
     price: 1.50,
     icon: '🍳',
     description: 'Huevo fresco, pan del día.',

@@ -315,6 +315,29 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0;
 }
 
+.sandwich-photo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 90px;
+  margin-bottom: 1rem;
+}
+
+.sandwich-photo-wrapper.large {
+  height: 170px;
+  margin-bottom: 0;
+}
+
+.sandwich-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 /* --- Juice glass: open fountain-glass silhouette with a footed base --- */
 
 .juice-glass-stage {
