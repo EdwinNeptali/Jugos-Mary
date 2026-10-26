@@ -4,6 +4,7 @@ import pineappleJuiceGlass from '../assets/pineapple-juice-glass.png';
 import pineappleJuiceColada from '../assets/pineapple-juice-colada.png';
 import chickenSandwichPhoto from '../assets/chicken-sandwich.png';
 import eggSandwichPhoto from '../assets/egg-sandwich.png';
+import cheeseSandwichPhoto from '../assets/cheese-sandwich.png';
 
 export const products = [
   {
@@ -87,6 +88,7 @@ export const products = [
     id: 's3',
     title: 'Queso Suizo',
     category: 'sandwich',
+    image: cheeseSandwichPhoto,
     price: 1.50,
     icon: '🧀',
     description: 'Queso suizo en láminas, pan del día.',
