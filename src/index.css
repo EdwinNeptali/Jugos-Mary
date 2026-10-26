@@ -577,11 +577,39 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .product-berenjena-option label {
+  position: relative;
+  justify-content: center;
   gap: 0.3rem;
   padding: 0.25rem 0.6rem;
   border: 1px solid var(--border-color);
   border-radius: 999px;
   background: var(--bg-color);
+  cursor: pointer;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.product-berenjena-option input[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0;
+}
+
+.product-berenjena-option label.selected {
+  color: #fff;
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.product-berenjena-option label:has(input:focus-visible) {
+  outline: 2px solid var(--text-color);
+  outline-offset: 2px;
 }
 
 .add-button {
