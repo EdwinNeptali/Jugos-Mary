@@ -118,6 +118,20 @@ export default function ProductVisual({ product, image = product.image, large })
   }
 
   if (product.category === 'postre') {
+    if (product.image) {
+      return (
+        <div className={`cake-photo-wrapper ${sizeClass} ${isZoomed ? 'is-zoomed' : ''}`} onPointerEnter={handlePointerEnter} onPointerMove={handlePointerMove} onPointerLeave={handlePointerLeave} onPointerDown={handlePointerDown} onPointerUp={handlePointerUp} onPointerCancel={handlePointerCancel}>
+          <img
+            className={`cake-photo ${isZoomed ? 'is-zoomed' : ''}`}
+            src={product.image}
+            alt={product.title}
+            draggable="false"
+            style={large ? { transformOrigin: zoomOrigin } : undefined}
+          />
+        </div>
+      );
+    }
+
     return (
       <div className={`cake-wrapper ${sizeClass}`}>
         <div className="cake-round">
