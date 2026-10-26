@@ -258,8 +258,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .product-visual-trigger.is-sandwich {
-  width: calc(100% + 2.5rem);
-  margin: -1.25rem -1.25rem 1rem;
+  width: calc(100% + 1rem);
+  margin: 0 -0.5rem 1rem;
 }
 
 .product-visual-zoom {
