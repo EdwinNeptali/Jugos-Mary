@@ -327,6 +327,16 @@ h1, h2, h3, h4, h5, h6 {
 .sandwich-photo-wrapper.large {
   height: 170px;
   margin-bottom: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  touch-action: pan-y;
+  cursor: zoom-in;
+  user-select: none;
+}
+
+.sandwich-photo-wrapper.large.is-zoomed {
+  touch-action: none;
+  cursor: zoom-out;
 }
 
 .sandwich-photo {
@@ -336,6 +346,11 @@ h1, h2, h3, h4, h5, h6 {
   object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
+  transition: transform 180ms ease;
+}
+
+.sandwich-photo.is-zoomed {
+  transform: scale(2.2);
 }
 
 /* --- Juice glass: open fountain-glass silhouette with a footed base --- */
@@ -375,11 +390,11 @@ h1, h2, h3, h4, h5, h6 {
   object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
+  transition: transform 180ms ease;
 }
 
 .juice-glass-image.is-zoomed {
   transform: scale(2.2);
-  transition: transform 80ms linear;
 }
 
 /* --- Bread roll (sandwiches): floury artisan bun --- */

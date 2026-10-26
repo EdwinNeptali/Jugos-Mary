@@ -38,12 +38,15 @@ export default function ProductDetailModal({ product, hasBerenjena, variantLabel
       >
         <button className="btn-close" onClick={onClose} aria-label="Cerrar">×</button>
 
-        <div className="detail-visual-stage">
+        <div className={`detail-visual-stage ${product.category === 'sandwich' ? 'is-sandwich' : ''}`}>
           {product.category !== 'jugos' && (
             <div className="detail-visual-glow" style={{ background: glowColor }}></div>
           )}
           <ProductVisual product={product} image={variantImage ?? product.image} large />
         </div>
+        {product.category === 'sandwich' && (
+          <p className="detail-zoom-hint">Pasa el cursor sobre la imagen para acercarla. En móvil, tócala para ampliar o reducir.</p>
+        )}
 
         <h2 className="detail-title">{product.title}</h2>
         <div className="detail-price">S/ {product.price.toFixed(2)}</div>
