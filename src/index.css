@@ -467,7 +467,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cake-photo-wrapper:not(.large) {
-  width: calc(100% - 1mm);
+  width: calc(100% - 0.5mm);
   height: 180px;
   margin: 0 auto 1rem;
   box-sizing: border-box;
