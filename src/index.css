@@ -508,6 +508,7 @@ h1, h2, h3, h4, h5, h6 {
 .cake-photo-wrapper:not(.large) .cake-photo {
   width: 200%;
   flex-basis: 200%;
+  transform: scale(1.2);
 }
 
 /* --- Cake: round queque with one portion sliced out --- */
