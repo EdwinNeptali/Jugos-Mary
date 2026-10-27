@@ -7,7 +7,7 @@ import eggSandwichPhoto from '../assets/egg-sandwich.png';
 import cheeseSandwichPhoto from '../assets/cheese-sandwich.png';
 import avocadoSandwichPhoto from '../assets/avocado-sandwich.png';
 import kekePhoto from '../assets/keke.png';
-import kekeCardPhoto from '../assets/keke-card.jpg';
+import kekeCardPhoto from '../assets/keke-card.png';
 
 export const products = [
   {
