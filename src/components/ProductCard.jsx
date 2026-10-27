@@ -34,7 +34,7 @@ export default function ProductCard({ product, onAdd, onSelect }) {
         onClick={() => onSelect(product, getProductOptions())}
         aria-label={`Ver detalles de ${product.title}`}
       >
-        <ProductVisual product={product} image={selectedVariant?.image ?? product.image} />
+        <ProductVisual product={product} image={selectedVariant?.image ?? product.cardImage ?? product.image} />
         <span className="product-visual-zoom" aria-hidden="true">🔍</span>
       </button>
 

@@ -7,6 +7,7 @@ import eggSandwichPhoto from '../assets/egg-sandwich.png';
 import cheeseSandwichPhoto from '../assets/cheese-sandwich.png';
 import avocadoSandwichPhoto from '../assets/avocado-sandwich.png';
 import kekePhoto from '../assets/keke.png';
+import kekeCardPhoto from '../assets/keke-card.jpg';
 
 export const products = [
   {
@@ -115,6 +116,7 @@ export const products = [
     title: 'Queque Casero',
     category: 'postre',
     image: kekePhoto,
+    cardImage: kekeCardPhoto,
     price: 1.50,
     icon: '🍰',
     description: 'Receta casera, horneado del día.',

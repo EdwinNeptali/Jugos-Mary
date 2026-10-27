@@ -99,7 +99,7 @@ export default function ProductVisual({ product, image = product.image, large })
         >
           <img
             className={`sandwich-photo ${isZoomed ? 'is-zoomed' : ''}`}
-            src={product.image}
+            src={image}
             alt={product.title}
             draggable="false"
             style={large ? { transformOrigin: zoomOrigin } : undefined}
@@ -123,7 +123,7 @@ export default function ProductVisual({ product, image = product.image, large })
         <div className={`cake-photo-wrapper ${sizeClass} ${isZoomed ? 'is-zoomed' : ''}`} onPointerEnter={handlePointerEnter} onPointerMove={handlePointerMove} onPointerLeave={handlePointerLeave} onPointerDown={handlePointerDown} onPointerUp={handlePointerUp} onPointerCancel={handlePointerCancel}>
           <img
             className={`cake-photo ${isZoomed ? 'is-zoomed' : ''}`}
-            src={product.image}
+            src={image}
             alt={product.title}
             draggable="false"
             style={large ? { transformOrigin: zoomOrigin } : undefined}
