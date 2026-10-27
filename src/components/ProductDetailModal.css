@@ -37,7 +37,9 @@
 }
 
 .detail-content.is-dessert {
-  max-width: 440px;
+  max-width: 460px;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 .detail-content .btn-close {
@@ -79,8 +81,8 @@
 }
 
 .detail-visual-stage.is-dessert .cake-photo-wrapper.large {
-  height: 380px;
-  flex: 0 0 380px;
+  height: 410px;
+  flex: 0 0 410px;
 }
 
 .detail-visual-glow {
